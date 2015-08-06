@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?><Context>
+	<!--$ANALYSIS-IGNORE, QUICKFIX APPLIED--><Environment description="valid values are: true or false. This controls whether the test information is displayed on the main page" name="inTesting" override="false" type="java.lang.String" value="true"/>
+
+	<!--$ANALYSIS-IGNORE, QUICKFIX APPLIED--><Parameter name="notifyOnGet" value="true"/>
+
+	<!--$ANALYSIS-IGNORE, QUICKFIX APPLIED--><Resource auth="Container" description="Derby database Demo Tomcat Book App" driverClassName="org.apache.derby.jdbc.EmbeddedDriver" maxActive="100" maxIdle="30" maxWait="10000" name="DefaultDatasource" password="" type="javax.sql.DataSource" url="jdbc:derby:/temp/TomcatDatabases/books;create=true" username=""/>
+
+	<!--$ANALYSIS-IGNORE, QUICKFIX APPLIED--><ResourceLink global="jdbc/globalStyleSettings" name="style" type="javax.sql.DataSource"/>
+
+	<!--$ANALYSIS-IGNORE, QUICKFIX APPLIED--><Resource auth="Container" description="Derby database for members" driverClassName="org.apache.derby.jdbc.EmbeddedDriver" maxActive="100" maxIdle="30" maxWait="10000" name="jdbc/Members" password="" type="javax.sql.DataSource" url="jdbc:derby:/temp/TomcatDatabases/members;create=true" username=""/>
+
+	<!--$ANALYSIS-IGNORE--><Valve className="org.apache.catalina.valves.AccessLogValve" directory="/temp/TomcatLogs" pattern="common" prefix="localhost_access_log." suffix=".txt"/>
+</Context>

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
+	<display-name>Library</display-name>
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
+	<context-param>
+		<param-name>notifyOnGet</param-name>
+		<param-value>true</param-value>
+	</context-param>
+	
+	<servlet>
+		<description>The main servlet driving bookings for users</description>
+		<servlet-name>UserBookingServlet</servlet-name>
+		<servlet-class>com.ibm.redbook.library.web.UserBookingServlet</servlet-class>
+		<init-param>
+			<description>Important information field</description>
+			<param-name>INFO_FIELD</param-name>
+			<param-value>Library system is online</param-value>
+		</init-param>
+	</servlet>
+	<servlet>
+		<description>Builds the database structure</description>
+		<servlet-name>BuildDatabases</servlet-name>
+		<servlet-class>com.ibm.redbook.library.web.BuildDatabases</servlet-class>
+	</servlet>
+	<servlet>
+		<description>Populates the database with some test data</description>
+		<servlet-name>PopulateTestData</servlet-name>
+		<servlet-class>com.ibm.redbook.library.web.PopulateTestData</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>BuildDatabases</servlet-name>
+		<url-pattern>/test/BuildDatabases</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>UserBookingServlet</servlet-name>
+		<url-pattern>/UserBookingServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>PopulateTestData</servlet-name>
+		<url-pattern>/test/PopulateTestData</url-pattern>
+	</servlet-mapping>
+
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>TestRole</web-resource-name>
+			<url-pattern>/test/*</url-pattern>
+		</web-resource-collection>
+		<auth-constraint>
+			<role-name>Test</role-name>
+		</auth-constraint>
+	</security-constraint>
+
+	<login-config>
+		<auth-method>BASIC</auth-method>
+	</login-config>
+	<security-role>
+		<role-name>Test</role-name>
+	</security-role>
+	<env-entry>
+		<env-entry-name>inTesting</env-entry-name>
+		<env-entry-type>java.lang.String</env-entry-type>
+		<env-entry-value>true</env-entry-value>
+	</env-entry>
+
+	<resource-ref id="MembersDataSource">
+		<description>Derby database Redbook Members Demo app</description>
+		<res-ref-name>jdbc/Members</res-ref-name>
+		<res-type>javax.sql.DataSource</res-type>
+		<res-auth>Container</res-auth>
+		<res-sharing-scope>Shareable</res-sharing-scope>
+	</resource-ref>
+	<resource-ref>
+		<description>
+		Derby database Demo Tomcat Book App</description>
+		<res-ref-name>DefaultDatasource</res-ref-name>
+		<res-type>javax.sql.DataSource</res-type>
+		<res-auth>Container</res-auth>
+		<res-sharing-scope>Shareable</res-sharing-scope>
+	</resource-ref>
+	<resource-ref>
+		<res-ref-name>style</res-ref-name>
+		<res-type>javax.sql.DataSource</res-type>
+		<res-auth>Container</res-auth>
+		<res-sharing-scope>Shareable</res-sharing-scope>
+	</resource-ref>
+	
+</web-app>
